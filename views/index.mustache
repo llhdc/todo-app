@@ -5,6 +5,33 @@
     <title>Todo App</title>
   </head>
   <body>
-    
+    <h1>Todos</h1>
+      <form action="todos/add" method="post">
+        <input id="addTodo" type="text" name="addTodo" placeholder="Add Todo">
+        <button type="submit">Add</button>
+      </form>
+    <br>
+    Uncompleted
+    <ul>
+      {{#todos}}
+        {{^complete}}
+          <li>
+            <form action="/todos/done" method="post">
+              {{description}} | <button type="submit" value="{{description}}" name="done">Done</button>
+            </form>
+          </li>
+        {{/complete}}
+      {{/todos}}
+    </ul>
+    Completed
+    <ul>
+      {{#todos}}
+        {{#complete}}
+        <li>
+          {{description}}
+        </li>
+        {{/complete}}
+      {{/todos}}
+    </ul>
   </body>
 </html>
